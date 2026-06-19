@@ -12,50 +12,127 @@ Le **Machine Learning (ML)** est une branche de l'intelligence artificielle qui 
 * Recommandation de produits
 * Analyse de fraude bancaire
 
+# Formation Complète : Machine Learning avec Python et Jupyter Notebook
+
+## Objectif du cours
+
+À la fin de cette formation, vous serez capable de :
+
+- Installer Python
+- Configurer un environnement de développement
+- Utiliser PowerShell
+- Créer des environnements virtuels
+- Installer des bibliothèques Python
+- Utiliser Jupyter Notebook
+- Comprendre les bases du Machine Learning
+- Réaliser vos premières prédictions avec Scikit-Learn
+
 ---
 
-# Chapitre 1 : Installation de Python
+# Partie 1 : Préparation de l'environnement
 
-## Vérifier si Python est installé
+## Pourquoi préparer un environnement ?
+
+Avant de créer des modèles d'intelligence artificielle, nous devons préparer un environnement de travail propre.
+
+Sans cela :
+
+- Les bibliothèques peuvent entrer en conflit
+- Les projets deviennent difficiles à maintenir
+- Les erreurs sont plus fréquentes
+
+---
+
+# Étape 1 : Vérifier l'installation de Python
 
 Ouvrez PowerShell :
+
+```powershell
+Win + X
+→ Terminal (Admin)
+```
+
+Vérifiez la présence de Python :
 
 ```powershell
 python --version
 ```
 
+ou
+
+```powershell
+python -V
+```
+
 Résultat attendu :
 
-```text
+```powershell
 Python 3.13.13
 ```
 
-Si Python n'est pas installé :
+### Explication
 
-1. Télécharger Python depuis :
-   https://www.python.org/downloads/
+Cette commande demande à Python d'afficher sa version.
 
-2. Pendant l'installation, cocher :
+Si vous obtenez :
 
-```text
-Add Python to PATH
+```powershell
+python n'est pas reconnu
+```
+
+cela signifie que Python n'est pas installé ou n'est pas dans le PATH Windows.
+
+---
+
+# Étape 2 : Vérifier PIP
+
+PIP est le gestionnaire de paquets officiel de Python.
+
+Il permet d'installer :
+
+- NumPy
+- Pandas
+- TensorFlow
+- Scikit-Learn
+- Jupyter
+
+Commande :
+
+```powershell
+pip --version
+```
+
+Résultat :
+
+```powershell
+pip 26.0.1
 ```
 
 ---
 
-# Chapitre 2 : Installation de UV
+# Étape 3 : Installation de UV
 
-## Qu'est-ce que UV ?
+## Pourquoi UV ?
 
-UV est un gestionnaire de paquets Python moderne et très rapide qui remplace avantageusement `pip`.
+UV est :
 
-### Installation
+- Plus rapide que PIP
+- Plus moderne
+- Plus efficace pour gérer les dépendances
+
+Installation :
 
 ```powershell
 pip install uv
 ```
 
-### Vérification
+Résultat :
+
+```powershell
+Successfully installed uv
+```
+
+Vérification :
 
 ```powershell
 uv --version
@@ -63,38 +140,75 @@ uv --version
 
 ---
 
-# Chapitre 3 : Création d'un environnement virtuel
+# Partie 2 : Création de l'environnement virtuel
 
-## Pourquoi utiliser un environnement virtuel ?
+## Pourquoi un environnement virtuel ?
 
-Chaque projet Python possède ses propres bibliothèques.
+Imaginons :
 
-Cela permet :
+Projet A :
 
-* d'éviter les conflits de versions
-* d'isoler les dépendances
-* de faciliter le déploiement
+```text
+TensorFlow 2.12
+```
 
-### Création
+Projet B :
+
+```text
+TensorFlow 2.18
+```
+
+Sans environnement virtuel :
+
+❌ Conflits
+
+Avec environnement virtuel :
+
+✅ Chaque projet possède ses propres bibliothèques
+
+---
+
+# Étape 4 : Créer l'environnement
+
+Créer un dossier de travail :
+
+```powershell
+mkdir MachineLearning
+```
+
+Entrer dans le dossier :
+
+```powershell
+cd MachineLearning
+```
+
+Créer l'environnement :
 
 ```powershell
 python -m venv myVenv
 ```
 
-Structure créée :
+### Explication
+
+- python : lance Python
+- -m : exécute un module
+- venv : module de virtualisation
+- myVenv : nom de l'environnement
+
+Arborescence créée :
 
 ```text
-myVenv/
-├── Scripts/
-├── Lib/
-├── Include/
+MachineLearning/
+│
+├── myVenv/
+│   ├── Scripts/
+│   ├── Include/
+│   └── Lib/
 ```
 
 ---
 
-# Chapitre 4 : Activation de l'environnement
-
-Sous Windows PowerShell :
+# Étape 5 : Activer l'environnement
 
 ```powershell
 .\myVenv\Scripts\Activate.ps1
@@ -103,76 +217,99 @@ Sous Windows PowerShell :
 Résultat :
 
 ```powershell
-(myVenv) PS C:\joe>
+(myVenv) PS C:\MachineLearning>
 ```
 
-L'apparition de `(myVenv)` indique que l'environnement est actif.
+### Explication
 
-### Vérification
+Lorsque vous voyez :
+
+```text
+(myVenv)
+```
+
+Python utilise maintenant cet environnement.
+
+Toutes les bibliothèques seront installées ici.
+
+---
+
+# Étape 6 : Vérifier le Python utilisé
 
 ```powershell
-python -V
+where python
 ```
 
 Résultat :
 
 ```text
-Python 3.13.13
+C:\MachineLearning\myVenv\Scripts\python.exe
 ```
+
+Cela confirme que Python utilise l'environnement virtuel.
 
 ---
 
-# Chapitre 5 : Installation de Jupyter Notebook
+# Partie 3 : Installation de Jupyter
 
-## Qu'est-ce que Jupyter ?
+## Qu'est-ce que Jupyter Notebook ?
 
-Jupyter Notebook permet :
+Jupyter Notebook est l'outil le plus utilisé en :
 
-* d'écrire du code Python
-* d'exécuter les cellules indépendamment
-* de documenter son travail
-* d'afficher des graphiques
-* de réaliser des projets de Data Science et Machine Learning
+- Data Science
+- Machine Learning
+- Intelligence Artificielle
 
-### Installation
+Il permet :
+
+- d'écrire du code
+- d'exécuter du code cellule par cellule
+- d'afficher des graphiques
+- d'écrire de la documentation
+
+---
+
+# Étape 7 : Installer Jupyter
+
+Commande :
 
 ```powershell
 uv pip install jupyter
 ```
 
-### Erreur rencontrée
+Vous avez rencontré l'erreur :
 
 ```text
 invalid peer certificate: UnknownIssuer
 ```
 
-### Cause
+### Explication
 
-Le certificat SSL du système n'était pas reconnu.
+UV ne faisait pas confiance au certificat SSL utilisé pour accéder à PyPI.
 
-### Solution
+---
+
+# Étape 8 : Corriger l'erreur SSL
+
+Installation avec les certificats système :
 
 ```powershell
 uv pip install jupyter --system-certs
 ```
 
-Installation réussie :
+### Explication
 
-```text
-Installed 97 packages
+Option :
+
+```powershell
+--system-certs
 ```
 
-Parmi les packages installés :
-
-* jupyter
-* notebook
-* jupyterlab
-* ipykernel
-* ipython
+Demande à UV d'utiliser les certificats Windows.
 
 ---
 
-# Chapitre 6 : Vérification de Jupyter
+# Étape 9 : Vérifier Jupyter
 
 ```powershell
 jupyter
@@ -182,16 +319,14 @@ Résultat :
 
 ```text
 Available subcommands:
-notebook
-lab
-server
+ notebook
+ lab
+ server
 ```
-
-Cela confirme que Jupyter est correctement installé.
 
 ---
 
-# Chapitre 7 : Lancer Jupyter Notebook
+# Étape 10 : Démarrer Jupyter Notebook
 
 ```powershell
 jupyter notebook
@@ -203,13 +338,76 @@ Résultat :
 http://localhost:8888/tree
 ```
 
+### Explication
+
+- localhost = votre ordinateur
+- 8888 = port réseau utilisé par Jupyter
+
 Le navigateur s'ouvre automatiquement.
 
 ---
 
-# Chapitre 8 : Création d'un Notebook
+# Partie 4 : Installation des bibliothèques de Machine Learning
 
-Dans l'interface Jupyter :
+## NumPy
+
+Manipulation des tableaux numériques.
+
+Installation :
+
+```powershell
+uv pip install numpy
+```
+
+---
+
+## Pandas
+
+Manipulation des données.
+
+Installation :
+
+```powershell
+uv pip install pandas
+```
+
+---
+
+## Matplotlib
+
+Création de graphiques.
+
+Installation :
+
+```powershell
+uv pip install matplotlib
+```
+
+---
+
+## Scikit-Learn
+
+Bibliothèque principale de Machine Learning.
+
+Installation :
+
+```powershell
+uv pip install scikit-learn
+```
+
+---
+
+# Installation complète en une seule commande
+
+```powershell
+uv pip install numpy pandas matplotlib scikit-learn seaborn
+```
+
+---
+
+# Partie 5 : Premier Notebook
+
+Créer un notebook :
 
 ```text
 New
@@ -217,32 +415,12 @@ New
 Python 3
 ```
 
-Un fichier apparaît :
-
-```text
-Untitled.ipynb
-```
-
-Renommez-le :
-
-```text
-premier_notebook.ipynb
-```
-
 ---
 
-# Chapitre 9 : Premier Programme Python
-
-Créer une cellule :
+# Premier programme
 
 ```python
 print("Bonjour Machine Learning")
-```
-
-Exécuter :
-
-```text
-Shift + Enter
 ```
 
 Résultat :
@@ -253,192 +431,69 @@ Bonjour Machine Learning
 
 ---
 
-# Chapitre 10 : Les Variables
+# Partie 6 : Premier modèle IA
 
-```python
-nom = "Joel"
-age = 25
-
-print(nom)
-print(age)
-```
-
-Résultat :
-
-```text
-Joel
-25
-```
-
----
-
-# Chapitre 11 : Calculs Simples
-
-```python
-a = 10
-b = 20
-
-print(a + b)
-print(a * b)
-print(a / b)
-```
-
-Résultat :
-
-```text
-30
-200
-0.5
-```
-
----
-
-# Chapitre 12 : Installation des Bibliothèques Data Science
-
-```powershell
-uv pip install numpy pandas matplotlib scikit-learn
-```
-
-Bibliothèques installées :
-
-| Bibliothèque | Utilité                 |
-| ------------ | ----------------------- |
-| NumPy        | Calcul scientifique     |
-| Pandas       | Manipulation de données |
-| Matplotlib   | Visualisation           |
-| Scikit-Learn | Machine Learning        |
-
----
-
-# Chapitre 13 : NumPy
-
-## Création d'un tableau
+## Importation
 
 ```python
 import numpy as np
-
-tableau = np.array([1, 2, 3, 4, 5])
-
-print(tableau)
-```
-
-Résultat :
-
-```text
-[1 2 3 4 5]
-```
-
----
-
-# Chapitre 14 : Pandas
-
-```python
-import pandas as pd
-
-data = {
-    "Nom": ["Joel", "Marie", "Paul"],
-    "Age": [25, 30, 35]
-}
-
-df = pd.DataFrame(data)
-
-df
-```
-
-Résultat :
-
-| Nom   | Age |
-| ----- | --- |
-| Joel  | 25  |
-| Marie | 30  |
-| Paul  | 35  |
-
----
-
-# Chapitre 15 : Matplotlib
-
-## Premier graphique
-
-```python
-import matplotlib.pyplot as plt
-
-x = [1,2,3,4]
-y = [2,4,6,8]
-
-plt.plot(x, y)
-plt.show()
-```
-
-Résultat :
-
-Un graphique est affiché.
-
----
-
-# Chapitre 16 : Introduction au Machine Learning
-
-Le Machine Learning consiste à apprendre automatiquement à partir des données.
-
-Schéma :
-
-```text
-Données (X)
-      ↓
-Algorithme
-      ↓
-Prédictions (Y)
-```
-
-Exemple :
-
-| Surface | Prix   |
-| ------- | ------ |
-| 50      | 50000  |
-| 100     | 100000 |
-| 150     | 150000 |
-
-Le modèle apprend la relation :
-
-```text
-Prix = f(Surface)
-```
-
----
-
-# Chapitre 17 : Régression Linéaire
-
-La régression linéaire est l'un des algorithmes les plus simples.
-
-Formule :
-
-```text
-y = ax + b
-```
-
-Où :
-
-* x = variable d'entrée
-* y = résultat à prédire
-* a = pente
-* b = intercept
-
----
-
-# Chapitre 18 : Premier Modèle de Machine Learning
-
-```python
 from sklearn.linear_model import LinearRegression
-import numpy as np
+```
 
+---
+
+## Création des données
+
+```python
 X = np.array([[1],[2],[3],[4],[5]])
 Y = np.array([2,4,6,8,10])
+```
 
+Ces données représentent :
+
+| X | Y |
+|---|---|
+| 1 | 2 |
+| 2 | 4 |
+| 3 | 6 |
+| 4 | 8 |
+| 5 | 10 |
+
+---
+
+## Création du modèle
+
+```python
 model = LinearRegression()
+```
 
+---
+
+## Entraînement
+
+```python
 model.fit(X, Y)
+```
 
+### Ce que fait fit()
+
+Le modèle cherche la meilleure équation :
+
+```text
+Y = aX + b
+```
+
+---
+
+## Prédiction
+
+```python
 prediction = model.predict([[6]])
+```
 
+Affichage :
+
+```python
 print(prediction)
 ```
 
@@ -448,7 +503,7 @@ Résultat :
 [12.]
 ```
 
-Le modèle a appris :
+Le modèle a compris :
 
 ```text
 Y = 2X
@@ -456,162 +511,66 @@ Y = 2X
 
 ---
 
-# Chapitre 19 : Visualisation de la Régression
+# Architecture d'un projet Machine Learning
 
-```python
-import matplotlib.pyplot as plt
-from sklearn.linear_model import LinearRegression
-import numpy as np
-
-X = np.array([[1],[2],[3],[4],[5]])
-Y = np.array([2,4,6,8,10])
-
-model = LinearRegression()
-model.fit(X, Y)
-
-predictions = model.predict(X)
-
-plt.scatter(X, Y)
-plt.plot(X, predictions)
-
-plt.show()
+```text
+Données
+   ↓
+Nettoyage
+   ↓
+Analyse
+   ↓
+Entraînement
+   ↓
+Évaluation
+   ↓
+Prédiction
+   ↓
+Déploiement
 ```
 
 ---
 
-# Chapitre 20 : Projet Pratique
+# Commandes à retenir
 
-## Prédiction du prix d'une maison
+Créer un projet :
 
-```python
-import numpy as np
-from sklearn.linear_model import LinearRegression
-
-surface = np.array([[50],[100],[150],[200]])
-prix = np.array([50000,100000,150000,200000])
-
-model = LinearRegression()
-
-model.fit(surface, prix)
-
-prediction = model.predict([[120]])
-
-print(prediction)
+```powershell
+mkdir MachineLearning
 ```
 
-Résultat :
+Créer un environnement :
 
-```text
-120000
+```powershell
+python -m venv myVenv
 ```
 
----
+Activer :
 
-# Cycle Complet d'un Projet Machine Learning
-
-```text
-1. Collecte des données
-        ↓
-2. Nettoyage des données
-        ↓
-3. Analyse des données
-        ↓
-4. Entraînement du modèle
-        ↓
-5. Évaluation
-        ↓
-6. Prédiction
-        ↓
-7. Déploiement
+```powershell
+.\myVenv\Scripts\Activate.ps1
 ```
 
----
+Installer Jupyter :
 
-# Exercices
-
-## Exercice 1
-
-Créer une variable :
-
-```python
-nom = "Joel"
+```powershell
+uv pip install jupyter --system-certs
 ```
 
-Afficher :
+Lancer Jupyter :
 
-```python
-print(nom)
+```powershell
+jupyter notebook
 ```
 
-## Exercice 2
+Installer les bibliothèques ML :
 
-Créer un tableau NumPy :
-
-```python
-[10,20,30,40,50]
+```powershell
+uv pip install numpy pandas matplotlib scikit-learn
 ```
 
-## Exercice 3
+Désactiver l'environnement :
 
-Créer un DataFrame :
-
-| Nom   | Salaire |
-| ----- | ------- |
-| Joel  | 1000    |
-| Marie | 1200    |
-| Paul  | 1500    |
-
-## Exercice 4
-
-Tracer un graphique :
-
-```python
-x = [1,2,3,4,5]
-y = [5,10,15,20,25]
-```
-
-## Exercice 5
-
-Créer un modèle de régression qui apprend :
-
-```text
-Y = 3X
-```
-
-Puis prédire :
-
-```text
-X = 10
-```
-
----
-
-# Conclusion
-
-Vous savez maintenant :
-
-* Installer Python
-* Créer un environnement virtuel
-* Installer Jupyter Notebook
-* Utiliser NumPy
-* Utiliser Pandas
-* Créer des graphiques
-* Comprendre le Machine Learning
-* Réaliser une régression linéaire
-* Effectuer des prédictions
-
-## Prochaines étapes
-
-1. Régression multiple
-2. Classification
-3. KNN
-4. Arbres de décision
-5. Random Forest
-6. Deep Learning
-7. TensorFlow
-8. PyTorch
-9. Déploiement avec FastAPI
-10. Intégration avec Next.js
-
-```
+```powershell
+deactivate
 ```
